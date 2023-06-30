@@ -1,5 +1,12 @@
 import Chrome from "chrome";
 
+declare global {
+  interface Window {
+    $tab: any;
+    $connection: any;
+  }
+}
+
 declare namespace chrome {
   export default Chrome;
 }
