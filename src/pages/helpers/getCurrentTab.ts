@@ -4,7 +4,6 @@ export default function getCurrentTab(): Promise<any> {
       if (!tab) {
         return reject(new Error("No active tab"));
       } else {
-        console.log(tab);
         return resolve(tab);
       }
     });

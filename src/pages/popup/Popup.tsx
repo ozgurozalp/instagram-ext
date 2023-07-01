@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { UserList, Loading, Button } from "@pages/popup/components";
-import { useUpdateEffect } from "@pages/popup/hooks";
+import { useMainStore } from "@pages/popup/store";
 import { TYPES } from "@pages/constants";
 import {
   removeMessageFromContent,
@@ -10,26 +10,24 @@ import {
 } from "@pages/helpers";
 
 export default function Popup() {
+  const { unfollowers, setUnfollowers, removeUnfollower, changeUserLoading } =
+    useMainStore();
   const [loading, setLoading] = useState(true);
   const [isInstagram, setIsInstagram] = useState(false);
-  const [users, setUsers] = useState(null);
   const notInstagramText = "Instagram'a git";
 
   const text = useMemo(() => {
-    if (!users) return "Geri Takip Etmeyenleri Göster";
-    else if (users.length === 0) return "Yeniden Kontrol Et";
+    if (!unfollowers) return "Geri Takip Etmeyenleri Göster";
+    else if (unfollowers.length === 0) return "Yeniden Kontrol Et";
     else return "Listeyi Yenile";
-  }, [users]);
+  }, [unfollowers]);
 
   useEffect(() => {
     sendMessageFromPopup({
       type: TYPES.CHECK_URL,
     });
-    setUsers(localStorage.users ? JSON.parse(localStorage.users) : null);
     setLoading(false);
-
     onMessageFromContent(callback);
-
     return () => {
       removeMessageFromContent(callback);
     };
@@ -38,25 +36,16 @@ export default function Popup() {
   function callback(request) {
     switch (request.type) {
       case TYPES.SET_PEOPLE: {
-        setUsers(request.users);
+        setUnfollowers(request.users);
         setLoading(false);
         break;
       }
       case TYPES.UNFOLLOWED: {
-        if (request.status) {
-          setUsers((prev) => {
-            return prev.filter((user) => user.id !== request.deletedId);
-          });
-        }
+        if (request.status) removeUnfollower(request.deletedId);
         break;
       }
       case TYPES.ERROR: {
-        setUsers((prev) => {
-          return prev.map((user) => {
-            if (user.id === request.deletedId) user.unFollowLoading = false;
-            return user;
-          });
-        });
+        changeUserLoading(request.deletedId, false);
         alert("Bir hata oluştu. Lütfen tekrar deneyin.");
         break;
       }
@@ -65,10 +54,6 @@ export default function Popup() {
       }
     }
   }
-
-  useUpdateEffect(() => {
-    localStorage.users = JSON.stringify(users);
-  }, [users]);
 
   const getPeople = async () => {
     if (!isInstagram) {
@@ -82,10 +67,7 @@ export default function Popup() {
     });
   };
   const unFollow = (user) => {
-    const copyOfUsers = [...users];
-    const currentUser = copyOfUsers.find((_user) => _user.id === user.id);
-    currentUser.unFollowLoading = true;
-    setUsers(copyOfUsers);
+    changeUserLoading(user.id, true);
     sendMessageFromPopup({
       type: TYPES.UNFOLLOW,
       user,
@@ -104,13 +86,13 @@ export default function Popup() {
   }
   return (
     <div className="h-full grid content-center pb-4">
-      <div className="bg-white sticky top-0 z-10 pt-4 pb-3 px-4 -mx-4">
+      <div className="bg-white sticky top-0 z-10 pb-3 px-4 -mx-4">
         <Button className="w-full" disabled={loading} onClick={getPeople}>
           {isInstagram ? text : notInstagramText}
         </Button>
       </div>
       <UserList
-        users={users}
+        users={unfollowers}
         isInstagram={isInstagram}
         openProfile={openProfile}
         unFollow={unFollow}

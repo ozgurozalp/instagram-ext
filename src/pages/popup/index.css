@@ -5,12 +5,9 @@
 @layer base {
     body,
     #root {
-        min-height: 200px;
-        display: grid;
+        @apply grid min-h-[200px];
     }
     body {
-        background: #fff;
-        width: 400px;
-        padding: 1rem;
+        @apply p-4 bg-white w-[400px];
     }
 }
