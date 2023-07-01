@@ -22,7 +22,7 @@
     "zustand": "^4.3.8"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^8.5.0",
+    "@rollup/plugin-typescript": "^11.1.2",
     "@testing-library/react": "13.4.0",
     "@types/chrome": "0.0.224",
     "@types/jest": "29.0.3",
