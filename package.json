@@ -1,12 +1,8 @@
 {
-  "name": "chrome-extension-boilerplate-react-vite",
+  "name": "instagram-unfollowers-chrome-extension",
   "version": "0.0.1",
-  "description": "chrome extension boilerplate",
+  "description": "Instagram unfollowers chrome extension",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite.git"
-  },
   "scripts": {
     "build": "tsc --noEmit && vite build",
     "build:watch": "cross-env __DEV__=true vite build -w",
@@ -35,6 +31,7 @@
     "@vitejs/plugin-react": "2.2.0",
     "autoprefixer": "^10.4.14",
     "chokidar": "^3.5.3",
+    "chrome-types": "^0.1.210",
     "cross-env": "^7.0.3",
     "eslint": "8.36.0",
     "eslint-config-prettier": "^8.5.0",

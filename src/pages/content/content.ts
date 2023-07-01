@@ -1,6 +1,6 @@
-import { getSharedData } from "@pages/helpers";
 import { TYPES } from "../constants";
-import { instagram } from "@pages/services";
+import { instagram } from "@/pages/services";
+import getSharedData from "@/pages/helpers/getSharedData";
 
 export let _sharedData;
 
@@ -9,6 +9,9 @@ export let _sharedData;
 
   chrome.runtime.onConnect.addListener((port) => {
     port.onMessage.addListener(async (request) => {
+      console.log({
+        request,
+      });
       switch (request.type) {
         case TYPES.GET_PEOPLE: {
           const users = await instagram.init();
@@ -31,12 +34,6 @@ export let _sharedData;
         case TYPES.REDIRECT_TO_INSTAGRAM: {
           location.href = "https://www.instagram.com/";
           break;
-        }
-        case TYPES.CHECK_URL: {
-          port.postMessage({
-            status: location.href.startsWith("https://www.instagram.com"),
-            type: TYPES.IS_INSTAGRAM,
-          });
         }
       }
     });

@@ -8,6 +8,6 @@
         @apply grid min-h-[200px];
     }
     body {
-        @apply p-4 bg-white w-[400px];
+        @apply px-4 bg-white w-[400px];
     }
 }

@@ -1,32 +1,25 @@
-import { useEffect, useMemo, useState } from "react";
-import { UserList, Loading, Button } from "@pages/popup/components";
-import { useMainStore } from "@pages/popup/store";
-import { TYPES } from "@pages/constants";
-import {
-  removeMessageFromContent,
-  sendMessageFromPopup,
-  openWindow,
-  onMessageFromContent,
-} from "@pages/helpers";
+import { useEffect, useState } from "react";
+import { UserList, Loading, Button } from "@/pages/popup/components";
+import { useMainStore } from "@/pages/popup/store";
+import { TYPES } from "@/pages/constants";
+import sendMessageFromPopup from "@/pages/helpers/sendMessageFromPopup";
+import onMessageFromContent from "@/pages/helpers/onMessageFromContent";
+import removeMessageFromContent from "@/pages/helpers/removeMessageFromContent";
+import openWindow from "@/pages/helpers/openWindow";
 
 export default function Popup() {
-  const { unfollowers, setUnfollowers, removeUnfollower, changeUserLoading } =
-    useMainStore();
-  const [loading, setLoading] = useState(true);
-  const [isInstagram, setIsInstagram] = useState(false);
-  const notInstagramText = "Instagram'a git";
-
-  const text = useMemo(() => {
-    if (!unfollowers) return "Geri Takip Etmeyenleri Göster";
-    else if (unfollowers.length === 0) return "Yeniden Kontrol Et";
-    else return "Listeyi Yenile";
-  }, [unfollowers]);
+  const {
+    unfollowers,
+    isInstagram,
+    setUnfollowers,
+    removeUnfollower,
+    changeUserLoading,
+    btnText,
+    noInstagramText,
+  } = useMainStore();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    sendMessageFromPopup({
-      type: TYPES.CHECK_URL,
-    });
-    setLoading(false);
     onMessageFromContent(callback);
     return () => {
       removeMessageFromContent(callback);
@@ -49,9 +42,6 @@ export default function Popup() {
         alert("Bir hata oluştu. Lütfen tekrar deneyin.");
         break;
       }
-      case TYPES.IS_INSTAGRAM: {
-        setIsInstagram(request.status);
-      }
     }
   }
 
@@ -62,10 +52,11 @@ export default function Popup() {
       });
     }
     setLoading(true);
-    await sendMessageFromPopup({
+    sendMessageFromPopup({
       type: TYPES.GET_PEOPLE,
     });
   };
+
   const unFollow = (user) => {
     changeUserLoading(user.id, true);
     sendMessageFromPopup({
@@ -73,6 +64,7 @@ export default function Popup() {
       user,
     });
   };
+
   const openProfile = (userName) => {
     openWindow(`https://www.instagram.com/${userName}`);
   };
@@ -84,11 +76,12 @@ export default function Popup() {
       </div>
     );
   }
+
   return (
     <div className="h-full grid content-center pb-4">
-      <div className="bg-white sticky top-0 z-10 pb-3 px-4 -mx-4">
+      <div className="bg-white sticky top-0 pt-4 z-10 pb-3 px-4 -mx-4">
         <Button className="w-full" disabled={loading} onClick={getPeople}>
-          {isInstagram ? text : notInstagramText}
+          {isInstagram ? btnText() : noInstagramText}
         </Button>
       </div>
       <UserList

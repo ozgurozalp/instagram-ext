@@ -1,5 +1,5 @@
-import { classNames } from "@pages/helpers";
 import { ReactNode } from "react";
+import classNames from "@/pages/helpers/classNames";
 
 interface ButtonProps {
   children: ReactNode;

@@ -1,6 +1,6 @@
 import React from "react";
-import { Smiley, List, Button } from "@pages/popup/components";
-import { User } from "@src/types";
+import { Smiley, List, Button } from "@/pages/popup/components";
+import { User } from "@/src/types";
 
 interface Props {
   users: User[];
@@ -14,8 +14,8 @@ export default function UserList({
   openProfile,
   isInstagram,
   unFollow,
-}: Props) {
-  if (!users) return null;
+}: Props): JSX.Element {
+  if (!users) return;
 
   if (users.length === 0) {
     return (
@@ -31,7 +31,7 @@ export default function UserList({
 
   return (
     <div>
-      <p className="text-center text-sm mb-1">
+      <p className="text-center text-sm mb-3">
         Seni geri takip etmeyen <strong>{users.length}</strong> kişi var
       </p>
       <List className="grid gap-3">

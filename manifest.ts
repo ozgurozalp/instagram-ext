@@ -5,16 +5,23 @@ import packageJson from "./package.json";
  */
 const manifest: chrome.runtime.ManifestV3 = {
   manifest_version: 3,
-  name: packageJson.name,
+  name: "Instagram unfollowers chrome extension",
   version: packageJson.version,
   description: packageJson.description,
   action: {
     default_popup: "src/pages/popup/index.html",
-    default_icon: "icon-34.png",
+    default_icon: {
+      "16": "images/instagram16.png",
+      "32": "images/instagram32.png",
+      "128": "images/instagram128.png",
+    },
   },
   icons: {
-    "128": "icon-128.png",
+    "16": "images/instagram16.png",
+    "32": "images/instagram32.png",
+    "128": "images/instagram128.png",
   },
+  permissions: ["tabs", "activeTab", "scripting"],
   content_scripts: [
     {
       matches: ["http://*/*", "https://*/*", "<all_urls>"],
@@ -28,7 +35,9 @@ const manifest: chrome.runtime.ManifestV3 = {
       resources: [
         "assets/js/*.js",
         "assets/css/*.css",
-        "icon-128.png",
+        "images/instagram16.png",
+        "images/instagram32.png",
+        "images/instagram128.png",
         "icon-34.png",
       ],
       matches: ["*://*/*"],

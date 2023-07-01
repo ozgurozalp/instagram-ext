@@ -1,9 +1,12 @@
 import { create } from "zustand";
-import { persist, createJSONStorage, devtools } from "zustand/middleware";
-import { User } from "@src/types";
+import { persist, devtools } from "zustand/middleware";
+import { User } from "@/src/types";
 
 export interface MainStore {
-  unfollowers: User[];
+  unfollowers: User[] | null;
+  isInstagram: boolean;
+  btnText: () => string;
+  noInstagramText: string;
   setUnfollowers: (unfollowers: User[]) => void;
   clearUnfollowers: () => void;
   removeUnfollower: (id: string) => void;
@@ -13,8 +16,10 @@ export interface MainStore {
 export const useMainStore = create<MainStore>()(
   devtools(
     persist(
-      (set) => ({
-        unfollowers: [],
+      (set, get) => ({
+        isInstagram: false,
+        noInstagramText: "Instagram'a git",
+        unfollowers: null,
         setUnfollowers: (unfollowers) => set({ unfollowers }),
         clearUnfollowers: () => set({ unfollowers: [] }),
         removeUnfollower: (id) =>
@@ -27,6 +32,18 @@ export const useMainStore = create<MainStore>()(
               user.id === id ? { ...user, unFollowLoading: loading } : user
             ),
           }));
+        },
+        btnText: () => {
+          const { unfollowers } = get();
+          let text = "Listeyi Yenile";
+
+          if (!unfollowers) {
+            text = "Geri Takip Etmeyenleri Göster";
+          } else if (unfollowers.length === 0) {
+            text = "Yeniden Kontrol Et";
+          }
+
+          return text;
         },
       }),
       {

@@ -1,4 +1,4 @@
-export default function OpenWindow(link) {
+export default function openWindow(link) {
   const myHeight = 900;
   const myWidth = 1200;
   const top = (screen.height - myHeight) / 4;

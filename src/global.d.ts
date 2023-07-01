@@ -2,8 +2,8 @@ import Chrome from "chrome";
 
 declare global {
   interface Window {
-    $tab: any;
-    $connection: any;
+    $tab: chrome.tabs.Tab;
+    $connection: chrome.runtime.Port;
   }
 }
 

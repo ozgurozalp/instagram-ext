@@ -1,6 +1,6 @@
-import { Options, User } from "@src/types";
-import { TYPES } from "@pages/constants";
-import { _sharedData } from "@pages/content/content";
+import { Options, User } from "@/src/types";
+import { TYPES } from "@/pages/constants";
+import { _sharedData } from "@/pages/content/content";
 
 export let followers: User[] = [];
 export let followings: User[] = [];

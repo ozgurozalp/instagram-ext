@@ -1751,6 +1751,11 @@
   "resolved" "https://registry.npmjs.org/chrome-trace-event/-/chrome-trace-event-1.0.3.tgz"
   "version" "1.0.3"
 
+"chrome-types@^0.1.210":
+  "integrity" "sha512-pZQmVGJR6VVW5KlrMigzlOxLEkEJYw9Qegkp9/AGV2AKKibS99uRcIJ2rH41I97QlenwGnISEsdhu1ywNymRaQ=="
+  "resolved" "https://registry.npmjs.org/chrome-types/-/chrome-types-0.1.210.tgz"
+  "version" "0.1.210"
+
 "ci-info@^3.2.0":
   "integrity" "sha512-xmDt/QIAdeZ9+nfdPsaBCpMvHNLFiLdjj59qjqn+6iPe6YmHGQ35sBnQ8uslRBXFmXkiZQOJRjvQeoGppoTjjg=="
   "resolved" "https://registry.npmjs.org/ci-info/-/ci-info-3.3.2.tgz"

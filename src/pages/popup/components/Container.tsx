@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { classNames } from "@pages/helpers";
+import classNames from "@/pages/helpers/classNames";
 
 interface ContainerProps {
   children: ReactNode;

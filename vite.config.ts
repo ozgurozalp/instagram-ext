@@ -21,9 +21,9 @@ const enableHmrInBackgroundScript = true;
 export default defineConfig({
   resolve: {
     alias: {
-      "@src": root,
-      "@assets": assetsDir,
-      "@pages": pagesDir,
+      "@/src": root,
+      "@/assets": assetsDir,
+      "@/pages": pagesDir,
     },
   },
   plugins: [
@@ -38,7 +38,7 @@ export default defineConfig({
   publicDir,
   build: {
     outDir,
-    /** Can slowDown build speed. */
+    /** Can slow down build speed. */
     // sourcemap: isDev,
     minify: isProduction,
     reportCompressedSize: isProduction,
