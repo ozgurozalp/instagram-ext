@@ -9,9 +9,6 @@ export let _sharedData;
 
   chrome.runtime.onConnect.addListener((port) => {
     port.onMessage.addListener(async (request) => {
-      console.log({
-        request,
-      });
       switch (request.type) {
         case TYPES.GET_PEOPLE: {
           const users = await instagram.init();

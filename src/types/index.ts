@@ -9,4 +9,7 @@ export interface User {
   full_name: string;
   image: string;
   unFollowLoading?: boolean;
+  isFollowingMe: boolean;
+  isPrivate: boolean;
+  isVerified: boolean;
 }
