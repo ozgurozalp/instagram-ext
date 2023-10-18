@@ -5,7 +5,7 @@ import { TYPES } from "@/pages/constants";
 import sendMessageFromPopup from "@/pages/helpers/sendMessageFromPopup";
 import onMessageFromContent from "@/pages/helpers/onMessageFromContent";
 import removeMessageFromContent from "@/pages/helpers/removeMessageFromContent";
-import openWindow from "@/pages/helpers/openWindow";
+import { Request } from "@/src/types";
 
 export default function Popup() {
   const {
@@ -20,13 +20,13 @@ export default function Popup() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    onMessageFromContent(callback);
+    onMessageFromContent(callback).catch(console.error);
     return () => {
       removeMessageFromContent(callback);
     };
   }, []);
 
-  function callback(request) {
+  function callback(request: Request) {
     switch (request.type) {
       case TYPES.SET_PEOPLE: {
         setUnfollowers(request.users);
@@ -54,19 +54,7 @@ export default function Popup() {
     setLoading(true);
     sendMessageFromPopup({
       type: TYPES.GET_PEOPLE,
-    });
-  };
-
-  const unFollow = (user) => {
-    changeUserLoading(user.id, true);
-    sendMessageFromPopup({
-      type: TYPES.UNFOLLOW,
-      user,
-    });
-  };
-
-  const openProfile = (userName) => {
-    openWindow(`https://www.instagram.com/${userName}`);
+    }).catch(console.error);
   };
 
   if (loading) {
@@ -84,12 +72,7 @@ export default function Popup() {
           {isInstagram ? btnText() : noInstagramText}
         </Button>
       </div>
-      <UserList
-        users={unfollowers}
-        isInstagram={isInstagram}
-        openProfile={openProfile}
-        unFollow={unFollow}
-      />
+      <UserList users={unfollowers} />
     </div>
   );
 }

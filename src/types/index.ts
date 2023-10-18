@@ -13,3 +13,10 @@ export interface User {
   isPrivate: boolean;
   isVerified: boolean;
 }
+
+export type Request = {
+  type: string;
+  users?: User[];
+  deletedId?: string;
+  status?: boolean;
+};

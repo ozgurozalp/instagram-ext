@@ -1,9 +1,10 @@
 import { TYPES } from "@/pages/constants";
 import initTabSetup from "@/pages/helpers/initTabSetup";
+import { User } from "@/src/types";
 
 type Data = {
   type: TYPES;
-} & Record<string, string | number>;
+} & Record<string, string | number | User>;
 
 let count = 0;
 
