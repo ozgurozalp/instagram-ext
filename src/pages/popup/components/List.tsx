@@ -48,10 +48,11 @@ export function ListItem({ user, className }: ListItemProps) {
           className="grid cursor-pointer"
           onClick={() => openProfile(user.username)}
         >
-          <span className="font-bold flex items-center gap-1 text-[13px]">
+          <span className="font-bold inline-block text-[13px]">
             {user.full_name}
             {user.isVerified && (
               <svg
+                className="inline-block ml-1 -mt-0.5"
                 aria-label="Verified"
                 color="rgb(0, 149, 246)"
                 fill="rgb(0, 149, 246)"
