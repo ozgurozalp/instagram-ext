@@ -1,1 +1,41 @@
-const u="modulepreload",m=function(s){return"/"+s},i={},d=function(r,o,f){return!o||o.length===0?r():Promise.all(o.map(e=>{if(e=m(e),e in i)return;i[e]=!0;const n=e.endsWith(".css"),c=n?'[rel="stylesheet"]':"";if(document.querySelector(`link[href="${e}"]${c}`))return;const t=document.createElement("link");if(t.rel=n?"stylesheet":u,n||(t.as="script",t.crossOrigin=""),t.href=e,document.head.appendChild(t),n)return new Promise((l,a)=>{t.addEventListener("load",l),t.addEventListener("error",()=>a(new Error(`Unable to preload CSS for ${e}`)))})})).then(()=>r())};d(()=>{(r=>import(r))("../../../assets/js/content.fbd8aa21.js")},[]);
+const scriptRel = "modulepreload";
+const assetsURL = function(dep) {
+  return "/" + dep;
+};
+const seen = {};
+const __vitePreload = function preload(baseModule, deps, importerUrl) {
+  if (!deps || deps.length === 0) {
+    return baseModule();
+  }
+  return Promise.all(deps.map((dep) => {
+    dep = assetsURL(dep);
+    if (dep in seen)
+      return;
+    seen[dep] = true;
+    const isCss = dep.endsWith(".css");
+    const cssSelector = isCss ? '[rel="stylesheet"]' : "";
+    if (document.querySelector(`link[href="${dep}"]${cssSelector}`)) {
+      return;
+    }
+    const link = document.createElement("link");
+    link.rel = isCss ? "stylesheet" : scriptRel;
+    if (!isCss) {
+      link.as = "script";
+      link.crossOrigin = "";
+    }
+    link.href = dep;
+    document.head.appendChild(link);
+    if (isCss) {
+      return new Promise((res, rej) => {
+        link.addEventListener("load", res);
+        link.addEventListener("error", () => rej(new Error(`Unable to preload CSS for ${dep}`)));
+      });
+    }
+  })).then(() => baseModule());
+};
+__vitePreload(() => {
+  const dynamicImport = (path) => import(path);
+  dynamicImport(
+    "../../../assets/js/content.js"
+  );
+}, true ? [] : void 0);
