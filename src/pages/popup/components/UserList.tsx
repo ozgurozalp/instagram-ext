@@ -37,14 +37,14 @@ export default function UserList({ users }: Props): JSX.Element {
       <p className="text-center text-sm mb-3">
         Seni geri takip etmeyen <strong>{filteredUsers.length}</strong> kişi var
       </p>
-      <div className="flex justify-center mb-2 gap-2">
+      <div className="flex justify-center mb-2 gap-x-1.5">
         <button
           className={`px-2 py-1 border rounded text-sm ${
             onlyVerified === undefined ? "ring ring-offset-1" : ""
           }`}
           onClick={() => setOnlyVerified(undefined)}
         >
-          All Users
+          Tüm hesaplar
         </button>
         <button
           className={`px-2 py-1 border rounded text-sm ${
@@ -52,7 +52,7 @@ export default function UserList({ users }: Props): JSX.Element {
           }`}
           onClick={() => setOnlyVerified(false)}
         >
-          Non-Verified Users
+          Normal hesaplar
         </button>
         <button
           className={`px-2 py-1 border rounded text-sm ${
@@ -60,7 +60,7 @@ export default function UserList({ users }: Props): JSX.Element {
           }`}
           onClick={() => setOnlyVerified(true)}
         >
-          Verified Users
+          Onaylı hesaplar
         </button>
       </div>
       <List className="grid">
