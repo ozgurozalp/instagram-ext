@@ -1,0 +1,29 @@
+body, #root, #app-container {
+  @apply min-h-[400px];
+}
+
+:is(body, #root, #app-container):has(.not-first-time) {
+  @apply min-h-[600px];
+}
+
+:is(body, #root, #app-container):has(.first-time) {
+  @apply min-h-[300px];
+}
+
+#app-container > .app {
+  @apply flex flex-col;
+}
+
+body {
+  @apply px-4 w-[420px] bg-background;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

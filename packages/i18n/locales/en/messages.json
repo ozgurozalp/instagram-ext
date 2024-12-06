@@ -1,0 +1,30 @@
+{
+  "extensionDescription": {
+    "description": "Özgür ÖZALP",
+    "message": "You can find who unfollowed you on Instagram."
+  },
+  "extensionName": {
+    "description": "Özgür ÖZALP",
+    "message": "Instagram Analyst"
+  },
+  "toggleTheme": {
+    "message": "Toggle theme"
+  },
+  "loading": {
+    "message": "Loading..."
+  },
+  "greeting": {
+    "description": "Greeting message",
+    "message": "Hello, My name is $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Doe"
+      }
+    }
+  },
+  "hello": {
+    "description": "Placeholder example",
+    "message": "Hello $1"
+  }
+}

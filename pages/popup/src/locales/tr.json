@@ -1,0 +1,20 @@
+{
+  "translation": {
+    "refresh": "Listeyi yenile",
+    "showUnfollowers": "Takip etmeyenleri göster",
+    "firstTime": "İlk kez mi buradasınız?",
+    "infoInInstagram": "Sizi takip etmeyenleri görmek için <bold>{{buttonText}}</bold> butonuna tıklayın.",
+    "infoNotInInstagram": "Eklentinin çalışabilmesi için Instagram'ın arkada açık olması gerekmektedir.",
+    "notConnected": "Instagram ile bağlantı kurulamadı. Lütfen eklentiyi kapatıp Instagramı yenileyip tekrar deneyin.",
+    "goToInstagram": "Instagram'a git",
+    "allAccounts": "Tüm hesaplar",
+    "verifiedAccounts": "Onaylı hesaplar",
+    "normalAccounts": "Normal hesaplar",
+    "searchAccountPlaceholder": "Hesaplarda ara",
+    "noResults": "Hiçbir sonuç bulunamadı.",
+    "awesome": "Harika !!!",
+    "noUnfollowersMessage": "Seni geri takip etmeyen arkadaşın yok.",
+    "unfollowersMessage": "Seni geri takip etmeyen <bold>{{count}}</bol> kişi var.",
+    "unfollow": "Takibi bırak"
+  }
+}

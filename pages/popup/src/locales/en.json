@@ -1,0 +1,20 @@
+{
+  "translation": {
+    "refresh": "Refresh the list",
+    "showUnfollowers": "Show unfollowers",
+    "firstTime": "Is this your first time here?",
+    "infoInInstagram": "To see who doesn't follow you, click the <bold>{{buttonText}}</bold> button.",
+    "infoNotInInstagram": "Instagram needs to be open in the background for the extension to work.",
+    "notConnected": "Could not connect to Instagram. Please close the extension, refresh Instagram, and try again.",
+    "goToInstagram": "Go to Instagram",
+    "allAccounts": "All accounts",
+    "verifiedAccounts": "Verified accounts",
+    "normalAccounts": "Normal accounts",
+    "searchAccountPlaceholder": "Search in accounts",
+    "noResults": "No results found.",
+    "awesome": "Awesome!!!",
+    "noUnfollowersMessage": "You don't have any friends who are not following you back.",
+    "unfollowersMessage": "There are <bold>{{count}}</bold> people not following you back.",
+    "unfollow": "Unfollow"
+  }
+}

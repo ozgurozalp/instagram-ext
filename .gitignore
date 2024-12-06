@@ -1,16 +1,26 @@
 # dependencies
-/node_modules
+**/node_modules
 
 # testing
-/coverage
+**/coverage
 
+# build
+**/dist
+**/build
+**/dist-zip
+
+# env
+**/.env.*
+**/.env
 
 # etc
 .DS_Store
-.env.local
 .idea
+**/.turbo
 
 # compiled
-utils/reload/*.js
-utils/reload/injections/*.js
-public/manifest.json
+chrome-extension/public/manifest.json
+**/tailwind-output.css
+
+# vite timestamp (because of bug from lib, remove it after fix will have been realased)
+**/vite.config.mts.timestamp-*

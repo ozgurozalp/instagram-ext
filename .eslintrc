@@ -8,7 +8,11 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:tailwindcss/recommended",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -18,14 +22,21 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "import", "jsx-a11y", "prettier"],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "import/no-unresolved": "off",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/prop-types": "off",
+    "tailwindcss/no-custom-classname": "off"
   },
   "globals": {
     "chrome": "readonly"
