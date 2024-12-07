@@ -1,11 +1,11 @@
 {
   "extensionDescription": {
     "description": "Eklenti açıklaması",
-    "message": "Instagram'da sizi takip etmeyenleri bulun."
+    "message": "Bu eklentiyi kullanarak Instagram'da sizi takip etmeyenleri bulabilir ve takibi bırakabilirsiniz."
   },
   "extensionName": {
     "description": "Eklenti adı",
-    "message": "Instagram Analyst"
+    "message": "Unfolks - Instagram'da sizi takip etmeyenleri bul!"
   },
   "toggleTheme": {
     "message": "Toggle theme"

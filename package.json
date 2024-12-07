@@ -1,7 +1,7 @@
 {
-  "name": "instagram-unfollowers-extension",
-  "version": "0.5.0",
-  "description": "A Chrome extension that helps you to find out who unfollowed you on Instagram.",
+  "name": "unfolks",
+  "version": "0.6.1",
+  "description": "A Chrome extension to find people who don't follow you back on Instagram.",
   "license": "MIT",
   "author": {
     "email": "mail@ozgurozalp.com",

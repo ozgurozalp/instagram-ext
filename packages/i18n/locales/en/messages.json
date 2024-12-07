@@ -1,11 +1,11 @@
 {
   "extensionDescription": {
     "description": "Özgür ÖZALP",
-    "message": "You can find who unfollowed you on Instagram."
+    "message": "You can find who doesn't follow you back on Instagram and unfollow them using this extension."
   },
   "extensionName": {
     "description": "Özgür ÖZALP",
-    "message": "Instagram Analyst"
+    "message": "Unfolks - Find who doesn't follow you back on Instagram!"
   },
   "toggleTheme": {
     "message": "Toggle theme"
