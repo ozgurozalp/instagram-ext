@@ -1,4 +1,4 @@
-import { withErrorBoundary, withSuspense } from '@extension/shared';
+import { captureException, withErrorBoundary, withSuspense } from '@extension/shared';
 import { Button, cn, Toaster } from '@extension/ui';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -84,6 +84,14 @@ function Popup() {
           Array.isArray(unfollowers) ? 'not-fist-time' : 'first-time',
         )}
       >
+        <button
+          onClick={() => {
+            captureException(new Error('Görüceksin'));
+            throw new Error('görmeyeceksin');
+          }}
+        >
+          Break the world
+        </button>
         {unfollowers === null && (
           <div className="mb-4 space-y-4 text-center">
             <p className="text-2xl">{t('firstTime')}</p>

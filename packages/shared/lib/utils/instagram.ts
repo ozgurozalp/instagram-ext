@@ -27,6 +27,9 @@ export class Instagram {
       mode: 'cors',
       credentials: 'include',
     });
+
+    if (!response.ok) throw response;
+
     const data = await response.json();
     return {
       status: data.status === 'ok',
@@ -52,6 +55,7 @@ export class Instagram {
         'Content-Type': 'application/json',
       },
     });
+    if (!response.ok) throw response;
     const { data } = await response.json();
 
     this.setFollowings(data.user.edge_follow.edges);

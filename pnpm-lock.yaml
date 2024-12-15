@@ -189,6 +189,10 @@ importers:
         version: link:../tsconfig
 
   packages/shared:
+    dependencies:
+      '@sentry/browser':
+        specifier: ^8.45.0
+        version: 8.45.0
     devDependencies:
       '@extension/storage':
         specifier: workspace:*

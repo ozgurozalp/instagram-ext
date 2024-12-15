@@ -23,5 +23,8 @@
   "devDependencies": {
     "@extension/storage": "workspace:*",
     "@extension/tsconfig": "workspace:*"
+  },
+  "dependencies": {
+    "@sentry/browser": "^8.45.0"
   }
 }

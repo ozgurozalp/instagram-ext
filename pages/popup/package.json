@@ -22,8 +22,6 @@
     "@extension/shared": "workspace:*",
     "@extension/storage": "workspace:*",
     "@extension/ui": "workspace:*",
-    "@sentry/browser": "^8.45.0",
-    "@sentry/react": "^8.45.0",
     "i18next": "^24.0.5",
     "lodash": "^4.17.21",
     "lucide-react": "^0.462.0",

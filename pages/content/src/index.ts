@@ -1,4 +1,4 @@
-import { getSharedData, Instagram, TYPES } from '@extension/shared';
+import { captureException, getSharedData, Instagram, TYPES } from '@extension/shared';
 import { sendMessageToBackground } from '@src/lib/utils';
 
 export const initSharedData = async () => {
@@ -11,11 +11,15 @@ export const initSharedData = async () => {
     sendResponse({ reply: 'ok' }); // Required to send response
 
     if (request.type === TYPES.GET_PEOPLE) {
-      const users = await instagram.getPeople();
-      sendMessageToBackground({
-        users,
-        type: TYPES.SET_PEOPLE,
-      }).catch(console.error);
+      try {
+        const users = await instagram.getPeople();
+        sendMessageToBackground({
+          users,
+          type: TYPES.SET_PEOPLE,
+        }).catch(console.error);
+      } catch (error) {
+        captureException(error as Error);
+      }
     }
 
     if (request.type === TYPES.UNFOLLOW) {
