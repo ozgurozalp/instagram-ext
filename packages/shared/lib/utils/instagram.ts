@@ -49,24 +49,29 @@ export class Instagram {
       }),
     };
 
-    const url = getURL(urlParams);
-    const response = await fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    if (!response.ok) throw response;
-    const { data } = await response.json();
+    try {
+      const url = getURL(urlParams);
+      const response = await fetch(url, {
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-    this.setFollowings(data.user.edge_follow.edges);
+      if (!response.ok) throw new Error(`Request failed with status: ${response.status}`);
 
-    const { has_next_page, end_cursor } = data.user.edge_follow.page_info;
+      const { data } = await response.json();
+      const {
+        edges: followEdges,
+        page_info: { has_next_page, end_cursor },
+      } = data.user.edge_follow;
 
-    if (has_next_page) {
-      return this.getFollowing({ has_next_page, end_cursor });
+      this.setFollowings(followEdges);
+
+      if (has_next_page) {
+        await this.getFollowing({ has_next_page, end_cursor });
+      }
+    } catch (error) {
+      console.error('Error fetching following data:', error);
+      throw error;
     }
-
-    return Promise.resolve();
   }
   setFollowings(_followings: any[]) {
     for (const { node: following } of _followings) {
