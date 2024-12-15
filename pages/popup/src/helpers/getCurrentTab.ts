@@ -1,26 +1,35 @@
-export default function getCurrentTab(): Promise<chrome.tabs.Tab> {
+export default function getCurrentTab() {
   return new Promise((resolve, reject) => {
     if (window.$tab) {
-      return resolve(window.$tab);
+      resolve(window.$tab);
+      return;
     }
 
     let retry = 0;
+    const maxRetries = 10;
+    const intervalDuration = 1000;
+
     const interval = setInterval(async () => {
-      const [tab] = await chrome.tabs.query({
-        active: true,
-        currentWindow: true,
-        status: 'complete',
-      });
-      if (tab) {
+      try {
+        const [tab] = await chrome.tabs.query({
+          active: true,
+          currentWindow: true,
+        });
+
+        if (tab) {
+          clearInterval(interval);
+          window.$tab = tab;
+          resolve(tab);
+        } else if (retry >= maxRetries) {
+          clearInterval(interval);
+          reject(new Error('Tab not found'));
+        }
+      } catch (error: any) {
         clearInterval(interval);
-        window.$tab = tab;
-        return resolve(tab);
+        reject(new Error('Error querying tabs: ' + error?.message));
       }
-      if (retry >= 10) {
-        clearInterval(interval);
-        return reject('Tab not found');
-      }
+
       retry++;
-    }, 100);
+    }, intervalDuration);
   });
 }
