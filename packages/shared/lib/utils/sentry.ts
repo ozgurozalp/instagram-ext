@@ -1,7 +1,6 @@
 import { BrowserClient, defaultStackParser, getDefaultIntegrations, makeFetchTransport, Scope } from '@sentry/browser';
 
 const integrations = getDefaultIntegrations({}).filter(defaultIntegration => {
-  console.log({ defaultIntegration });
   return !['BrowserApiErrors', 'Breadcrumbs', 'GlobalHandlers'].includes(defaultIntegration.name);
 });
 
